@@ -1,0 +1,9 @@
+:root {
+    --font-color-dark: #525252;
+    --font-color-light: #bdbdbd;
+    --font-color-inverse: #ffffff;
+
+    --seperator-color: #f0f0f0;
+    --background-color-light: #ffffff;
+    --accent-color: #9C00C9;
+}

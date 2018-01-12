@@ -1,0 +1,44 @@
+<a class="logo-link" href="">
+    <div class="logo">
+        JacketSwap
+    </div>
+</a>
+<nav>
+    {% if user.is_authenticated %}
+        <a href=""><i class="fas fa-lg fa-fw fa-film"></i> Series</a>
+        <a href=""><i class="far fa-lg fa-fw fa-file-code"></i> API</a>
+        {# <a href="{% url "user:binge" %}"><i class="fas fa-lg fa-fw fa-user"></i> Your Binge</a> #}
+    {% endif %}
+</nav>
+<div class="header">
+    <img src="http://voice4thought.org/wp-content/uploads/2016/08/default1.jpg" alt="Guest"/>
+    <div class="user-info">
+        <span class="name">
+            {% if user.is_authenticated %}
+                {{ user.get_full_name }}
+            {% else %}
+                Guest
+            {% endif %}
+        </span>
+        <span class="role">
+            {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                    Administrator
+                {% else %}
+                    Member
+                {% endif %}
+            {% else %}
+                Not logged in
+            {% endif %}
+        </span>
+    </div>
+    <form action="{% if user.is_authenticated %}{% url "user:logout" %}{% else %}{% url "user:login" %}{% endif %}">
+        <button class="btn {% if user.is_authenticated %}btn-inverse{% endif %} btn-top-clear block-center">
+            {% if user.is_authenticated %}
+                Log out
+            {% else %}
+                Log in
+            {% endif %}
+        </button>
+    </form>
+</div>
