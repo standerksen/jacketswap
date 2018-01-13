@@ -6,6 +6,6 @@ class IndexView(View):
     @staticmethod
     def get(request):
         if request.user.is_authenticated:
-            return redirect('')
+            pass
 
         return render(request, 'generic/index.html', {})

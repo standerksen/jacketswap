@@ -17,19 +17,32 @@
             <link rel="stylesheet" href="{% static "generic/css/variables.css" %}" type="text/css">
             <link rel="stylesheet" href="{% static "generic/css/base.css" %}" type="text/css">
         {% endblock %}
-
     </head>
     <body>
         <div class="container">
             <div class="row wrapper">
-                <div class="col-lg-2 sidebar">
-                    {% include 'generic/sidebar.html' %}
-                </div>
-                <div class="col-lg-10 main">
-                    <div class="heading">
-                        {% block heading %}
-                        {% endblock %}
-                    </div>
+                <div class="col-lg-12 main">
+                    {% block navigation %}
+                        <div class="header-nav" style="background-image: url({% static 'generic/img/splash.jpg' %})">
+                            <a href="{% url 'index' %}">
+                                <div class="logo">
+                                    <img src="{% static 'generic/img/js-logo-white-37x37.png' %}" alt="JacketSwap logo" />
+                                    <span>JacketSwap</span>
+                                </div>
+                            </a>
+                            <nav class="splash-navigation">
+                                <ul>
+                                    <a href="#"><li>About</li></a>
+                                    {% if user.is_authenticated %}
+                                        <a href="#"><li>Logout</li></a>
+                                    {% else %}
+                                        <a href="{% url 'user:login' %}"><li>Login</li></a>
+                                    {% endif %}
+                                    <a href="#"><li class="button">Add jacket</li></a>
+                                </ul>
+                            </nav>
+                        </div>
+                    {% endblock %}
                     <div class="content">
                         {% block content %}
                         {% endblock %}

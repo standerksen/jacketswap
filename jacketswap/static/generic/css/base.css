@@ -10,9 +10,11 @@ body {
 body a {
     color: var(--accent-color);
     font-weight: 500;
+    transition: color 0.2s ease;
 }
 
 body a:hover {
+    color: var(--accent-color);
     text-decoration: none;
 }
 
@@ -30,11 +32,25 @@ body a:hover {
 
 .wrapper .splash {
     background-position: center;
-    border-radius: 4px;
+    border-radius: 4px 4px 0 0;
     color: var(--font-color-inverse);
     height: 600px;
     position: relative;
     width: 100%;
+}
+
+.wrapper .main {
+    padding: 0;
+}
+
+.content {
+    padding: 15px;
+}
+
+.control-label {
+    font-size: 9px;
+    margin: 0 0 0 14px;
+    text-transform: uppercase;
 }
 
 .splash .logo {
@@ -46,12 +62,15 @@ body a:hover {
 }
 
 .splash .logo h1 {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     margin-bottom: 80px;
 }
 
 .splash .logo img {
     height: 200px;
     width: 200px;
+    -webkit-filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
 }
 
 .sidebar .header img {
@@ -61,15 +80,120 @@ body a:hover {
 }
 
 .js-input {
-    border: none;
+    border: 1px solid var(--font-color-light);
     border-radius: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    font-weight: 500;
     height: 30px;
 }
 
 .js-input-splash {
     border: none;
     border-radius: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     height: 40px;
     padding: 0 15px;
     width: 80%;
+}
+
+.splash-navigation {
+    float: right;
+}
+
+.splash-navigation a {
+    color: var(--font-color-inverse);
+}
+
+.splash-navigation a:hover {
+    color: var(--accent-color);
+}
+
+.splash-navigation ul {
+    margin-right: 20px;
+    margin-top: 25px;
+}
+
+.splash-navigation ul li {
+    display: inline;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 10px 15px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+}
+
+.splash-navigation .button {
+    border: 1px solid var(--font-color-inverse);
+    border-radius: 999px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    margin-left: 15px;
+    text-shadow: none;
+    transition: background-color 0.2s ease;
+}
+
+.splash-navigation .button:hover {
+    background-color: var(--font-color-inverse);
+}
+
+.header-nav {
+    border-radius: 4px 4px 0 0;
+    height: 77px;
+}
+
+.header-nav img {
+    height: 37px;
+    margin: 20px;
+    width: 37px;
+    -webkit-filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
+}
+
+.header-nav span {
+    color: var(--font-color-inverse);
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.header-nav .logo {
+    display: inline-block;
+    padding-right: 20px;
+}
+
+.button-primary {
+    background-color: var(--accent-color);
+    border-radius: 999px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    color: var(--font-color-inverse);
+    cursor: pointer;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.button-secondary {
+    background-color: var(--font-color-inverse);
+    border: 1px solid var(--accent-color);
+    border-radius: 999px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    color: var(--accent-color);
+    cursor: pointer;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.button-secondary:hover {
+    background-color: var(--accent-color);
+    color: var(--font-color-inverse);
+}
+
+.button-margin {
+    margin-left: 10px;
+}
+
+.form-group {
+    margin-bottom: 0;
+}
+
+.form-buttons {
+    margin-top: 15px;
 }

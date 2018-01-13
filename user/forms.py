@@ -4,11 +4,11 @@ from django import forms
 
 
 class RegisterForm(forms.ModelForm):
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control js-input'}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control js-input'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control js-input'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control js-input'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control js-input'}))
 
     class Meta:
         model = User
@@ -16,8 +16,8 @@ class RegisterForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control js-input'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control js-input'}))
 
     def clean(self):
         cleaned_data = super().clean()
@@ -27,7 +27,7 @@ class LoginForm(forms.Form):
         user = authenticate(username=username, password=password)
 
         if user is None:
-            raise forms.ValidationError("Wrong email and password combination.")
+            raise forms.ValidationError("Wrong username and password combination.")
         if not user.is_active:
             raise forms.ValidationError("Your account is not active.")
 
