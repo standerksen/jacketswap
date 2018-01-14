@@ -39,8 +39,8 @@
                 <span class="user-username">{{ object.added_by.username }}</span>
             </div>
             <div class="col-lg-12">
-                <form class="button-form" action="#">
-                    <button class="btn button-primary" {% if user.pk == object.added_by_id or object.returned %}disabled{% endif %}>
+                <form class="button-form" action="{% url 'jacket:claim' object.pk %}">
+                    <button class="btn button-primary" {% if user.pk == object.added_by_id or object.returned %}disabled{% endif %} onclick="return confirm('By claiming this jacket, JacketSwap will send your e-mail address to the user that posted this jacket. Are you sure you want to continue?')">
                         {% if object.lost_found == 'lost' %}
                             I found this jacket!
                         {% else %}

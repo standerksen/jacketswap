@@ -1,0 +1,13 @@
+{% extends "generic/base.html" %}
+
+{% block title %}About &middot; JacketSwap{% endblock %}
+
+{% block content %}
+    <div class="col-lg-12">
+        <h5>Success</h5>
+        <p>
+            You have successfully sent an e-mail to <span class="bold">{{ jacket.added_by.username }}</span>. Your
+            contact information has been sent so that the user can contact you.
+        </p>
+    </div>
+{% endblock %}

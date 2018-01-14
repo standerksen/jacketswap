@@ -1,4 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.conf import settings
+from django.core.mail import send_mail
+from django.urls import reverse
 from django.views import generic
 from simple_search import search_filter
 from .models import Jacket
@@ -74,3 +77,14 @@ def mark_returned(request, jacket_id):
         return redirect('jacket:details', pk=jacket_id)
     else:
         return redirect('index')
+
+
+def claim_jacket(request, jacket_id):
+    user = request.user
+    jacket = get_object_or_404(Jacket, pk=jacket_id)
+    subject = 'New response on JacketSwap!'
+    message = 'Dear ' + jacket.added_by.username + ',\n\nJacketSwap user ' + user.username + ' responded to your jacket post on JacketSwap.\nCheck out your post here: ' + request.build_absolute_uri(reverse('jacket:details', args=[jacket_id])) + '\nYou can contact ' + user.username + ' by sending an e-mail to: ' + user.email + '\n\nKind regards,\n\nJacketSwap'
+    from_email = settings.EMAIL_HOST_USER
+    send_mail(subject, message, from_email, ['standerksen@outlook.com', user.email], fail_silently=False)
+
+    return render(request, 'jacket/claimed.html', {'jacket': jacket})
