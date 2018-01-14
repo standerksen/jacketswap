@@ -17,7 +17,10 @@
         <div class="logo">
             <img src="{% static 'generic/img/js-logo-white.png' %}" alt="JacketSwap logo" />
             <h1>JacketSwap</h1>
-            <input class="js-input-splash" type="text" name="search" placeholder="Search (ex. black jacket in Fuik)">
+            <form action="{% url 'jacket:search' %}" method="post">
+                {% csrf_token %}
+                <input class="js-input-splash" type="text" name="search" placeholder="Search (ex. black jacket in Fuik)">
+            </form>
         </div>
     </div>
 {% endblock %}

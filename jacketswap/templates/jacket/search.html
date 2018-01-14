@@ -1,0 +1,21 @@
+{% extends "generic/base.html" %}
+
+{% block title %}Search &middot; JacketSwap{% endblock %}
+
+{% block content %}
+    <div class="col-lg-12">
+        <h5>Search results</h5>
+        {% for jacket in jackets %}
+            <a href="{% url 'jacket:details' jacket.pk %}">
+                <div class="jacket-item">
+                    <div class="image" style="background-image: url({{ jacket.image.url }})"></div>
+                    <div class="info">
+                        <div class="title">{{ jacket.title }}</div>
+                        <div class="location">{{ jacket.location }}</div>
+                    </div>
+                    <div class="lof">{{ jacket.lost_found }}</div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
