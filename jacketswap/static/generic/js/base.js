@@ -17,8 +17,11 @@ imageZoom.click(function() {
 
 $('body').click(function(event) {
     if(event.target.id === 'user-navigation') {
-        console.log(event.target.id);
-        $('.user-menu').toggle();
+        if($(window).width() > 767) {
+            $('.user-menu').toggle();
+        } else {
+            $('.mobile-user-menu').toggle();
+        }
     } else {
         $('.user-menu').hide();
     }

@@ -119,10 +119,6 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--font-color-inverse);
 }
 
-.splash-navigation a:hover {
-    color: var(--accent-color);
-}
-
 .splash-navigation ul {
     margin-right: 20px;
     margin-top: 25px;
@@ -138,6 +134,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (min-width: 768px) {
+    .splash-navigation a:hover {
+        color: var(--accent-color);
+    }
+
     .splash-navigation ul li {
         display: inline;
     }
@@ -145,8 +145,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .splash-navigation .fa-bars {
     color: var(--font-color-inverse);
-    position: relative;
-    left: 10px;
+    position: absolute;
+    right: 30px;
     -webkit-filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
     filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
 }
@@ -171,7 +171,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .splash-navigation .hamburger {
-    margin: 10px 0;
+    margin: 29px 0;
 }
 
 .mobile-navigation {
@@ -500,9 +500,27 @@ textarea.form-control {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     display: none;
     position: absolute;
-    right: 89px;
+    right: -9999px;
     top: 67px;
     z-index: 20;
+}
+
+.mobile-user-menu {
+    display: none;
+}
+
+.mobile-user-menu li {
+    background-color: #c561ee;
+}
+
+@media (min-width: 768px) {
+    .user-menu {
+        right: 89px;
+    }
+
+    .mobile-user-menu {
+        display: none;
+    }
 }
 
 .user-menu:after {

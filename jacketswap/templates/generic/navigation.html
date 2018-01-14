@@ -10,6 +10,10 @@
                 <a href="{% url 'user:logout' %}"><li>Logout</li></a>
             </ul>
         </div>
+        <ul class="mobile-user-menu">
+            <a href="{% url 'user:jackets' %}"><li>Your jackets</li></a>
+            <a href="{% url 'user:logout' %}"><li>Logout</li></a>
+        </ul>
     {% else %}
         <a href="{% url 'user:login' %}"><li>Login</li></a>
     {% endif %}
