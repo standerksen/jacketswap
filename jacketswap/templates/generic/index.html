@@ -30,13 +30,19 @@
         <h5>Recently added jackets</h5>
         {% for jacket in jackets %}
             <a href="{% url 'jacket:details' jacket.pk %}">
-                <div class="jacket-item">
+                <div class="jacket-item {% if jacket.returned %}returned{% endif %}">
                     <div class="image" style="background-image: url({{ jacket.image.url }})"></div>
                     <div class="info">
                         <div class="title">{{ jacket.title }}</div>
                         <div class="location">{{ jacket.location }}</div>
                     </div>
-                    <div class="lof">{{ jacket.lost_found }}</div>
+                    <div class="lof">
+                        {% if jacket.returned %}
+                            Returned!
+                        {% else %}
+                            {{ jacket.lost_found }}
+                        {% endif %}
+                    </div>
                 </div>
             </a>
         {% endfor %}

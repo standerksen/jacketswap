@@ -8,4 +8,5 @@ urlpatterns = [
     path('<int:pk>/', views.JacketDetails.as_view(), name='details'),
     path('create/', views.JacketCreate.as_view(), name='create'),
     path('search/', views.search_results, name='search'),
+    path('return/<int:jacket_id>/', views.mark_returned, name='return'),
 ]

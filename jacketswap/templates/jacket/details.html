@@ -7,7 +7,18 @@
     <div class="container">
         <div class="row jacket-details">
             <div class="col-lg-9 jacket-info">
-                <h5>{% if object.lost_found == 'lost' %}Lost: {% else %}Found: {% endif %}{{ object.title }}</h5>
+                <h5>
+                    {% if object.returned %}
+                        Returned:
+                    {% else %}
+                        {% if object.lost_found == 'lost' %}
+                            Lost:
+                        {% else %}
+                            Found:
+                        {% endif %}
+                    {% endif %}
+                    {{ object.title }}
+                </h5>
                 <div class="image" style="background-image: url({{ object.image.url }})"></div>
                 <div class="image-zoom">
                     <img src="{{ object.image.url }}" />
@@ -28,13 +39,27 @@
                 <span class="user-username">{{ object.added_by.username }}</span>
             </div>
             <div class="col-lg-12">
-                <div class="btn button-primary">
-                    {% if object.lost_found == 'lost' %}
-                        I found this jacket!
-                    {% else %}
-                        This is my jacket!
-                    {% endif %}
-                </div>
+                <form class="button-form" action="#">
+                    <button class="btn button-primary" {% if user.pk == object.added_by_id or object.returned %}disabled{% endif %}>
+                        {% if object.lost_found == 'lost' %}
+                            I found this jacket!
+                        {% else %}
+                            This is my jacket!
+                        {% endif %}
+                    </button>
+                </form>
+                {% if object.added_by_id == user.id %}
+                    <form class="button-form" action="{% url 'jacket:return' object.pk %}">
+                        <button class="btn {% if not object.returned %}button-primary{% else %}button-secondary returned{% endif %}">
+                            {% if not object.returned %}
+                                Mark as returned
+                            {% else %}
+                                Returned!
+                            {% endif %}
+                        </button>
+                    </form>
+                {% endif %}
+                {% if jacket.returned %}<span class="jacket-is-returned">This jacket is returned!</span>{% endif %}
             </div>
             <div class="col-lg-12 date">
                 Added on {{ object.added_on }}

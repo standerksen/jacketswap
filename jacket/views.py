@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from simple_search import search_filter
 from .models import Jacket
@@ -41,17 +41,36 @@ class JacketCreate(generic.CreateView):
 
 
 def search_results(request):
-    template_name = "jacket/search.html"
+    template_name = "jacket/index.html"
 
     if request.method == 'POST':
         search_string = request.POST['search']
         if search_string == '':
-            context = {'jackets': Jacket.objects.all()}
-            return render(request, template_name, context).order_by('-added_on')
+            context = {'jackets': Jacket.objects.all().order_by('-added_on'), 'source': 'search'}
+            return render(request, template_name, context)
         search_fields = ['title', 'description', 'location']
         f = search_filter(search_fields, search_string)
-        context = {'jackets': Jacket.objects.filter(f).order_by('-added_on')}
+        context = {'jackets': Jacket.objects.filter(f).order_by('-added_on'), 'source': 'search'}
         return render(request, template_name, context)
     else:
-        context = {'jackets': Jacket.objects.all()}
-        return render(request, template_name, context).order_by('-added_on')
+        context = {'jackets': Jacket.objects.all().order_by('-added_on'), 'source': 'search'}
+        return render(request, template_name, context)
+
+
+def your_jackets(request):
+    if request.user.is_authenticated:
+        template_name = "jacket/index.html"
+        user_jackets = Jacket.objects.filter(added_by_id=request.user.id)
+        return render(request, template_name, {'jackets': user_jackets, 'source': 'your-jackets'})
+    else:
+        return redirect('index')
+
+
+def mark_returned(request, jacket_id):
+    jacket = get_object_or_404(Jacket, pk=jacket_id)
+    if request.user.is_authenticated and request.user.pk == jacket.added_by_id:
+        jacket.returned = False if jacket.returned is True else True
+        jacket.save()
+        return redirect('jacket:details', pk=jacket_id)
+    else:
+        return redirect('index')

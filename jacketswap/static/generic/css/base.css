@@ -304,9 +304,17 @@ a .jacket-item .title {
     font-weight: 700;
 }
 
+a .jacket-item.returned .title {
+    text-decoration: line-through;
+}
+
 a .jacket-item .location {
     color: var(--font-color-light);
     font-size: 12px;
+}
+
+a .jacket-item.returned .location {
+    text-decoration: line-through;
 }
 
 a .jacket-item .lof {
@@ -475,4 +483,69 @@ textarea.form-control {
     .jacket-details .button-primary {
         margin-top: 0;
     }
+}
+
+.fa-caret-down {
+    -webkit-filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+}
+
+.user-menu {
+    background-color: var(--background-color-light);
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    display: none;
+    position: absolute;
+    right: 89px;
+    top: 67px;
+    z-index: 20;
+}
+
+.user-menu:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-bottom-color: var(--background-color-light);
+	border-top: 0;
+	margin-left: -10px;
+	margin-top: -10px;
+}
+
+.user-menu ul {
+    margin: 0;
+    padding: 15px;
+}
+
+.user-menu ul li {
+    border-radius: 4px;
+    display: block;
+    font-weight: 500;
+    text-shadow: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.user-menu ul li:hover {
+    background-color: var(--accent-color);
+    color: var(--font-color-inverse);
+}
+
+.user-menu ul a {
+    color: var(--accent-color);
+}
+
+.button-form {
+    display: inline;
+}
+
+.jacket-is-returned {
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.button-primary:disabled {
+    background-color: #b6b6b6;
 }
