@@ -1,0 +1,44 @@
+{% extends 'generic/base.html' %}
+{% load staticfiles %}
+
+{% block title %}{{ object.title }} &middot; JacketSwap{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row jacket-details">
+            <div class="col-lg-9 jacket-info">
+                <h5>{% if object.lost_found == 'lost' %}Lost: {% else %}Found: {% endif %}{{ object.title }}</h5>
+                <div class="image" style="background-image: url({{ object.image.url }})"></div>
+                <div class="image-zoom">
+                    <img src="{{ object.image.url }}" />
+                </div>
+                <div class="description">{{ object.description }}</div>
+            </div>
+            <div class="col-lg-3 jacket-user">
+                <h5>Added by</h5>
+                <div class="user-image" style="background-image: url({% static 'generic/img/user-placeholder.jpg' %})"></div>
+                <span class="user-fullname">
+                    {% if object.added_by.get_full_name != '' %}
+                        {{ object.added_by.get_full_name }}
+                    {% else %}
+                        Anonymous
+                    {% endif %}
+                </span>
+                <br>
+                <span class="user-username">{{ object.added_by.username }}</span>
+            </div>
+            <div class="col-lg-12">
+                <div class="btn button-primary">
+                    {% if object.lost_found == 'lost' %}
+                        I found this jacket!
+                    {% else %}
+                        This is my jacket!
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-12 date">
+                Added on {{ object.added_on }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -3,15 +3,18 @@
 {% block title %}Log in &middot; JacketSwap{% endblock %}
 
 {% block content %}
-    {{ form.non_field_errors }}
-    <form class="form-vertical" action="{% url "user:login" %}" method="post">
-        {% csrf_token %}
-        {% include "generic/form.html" %}
-        <div class="form-buttons">
-            <button type="submit" class="btn button-primary">Log in</button>
-            <a href="{% url "user:register" %}">
-                <button type="button" class="btn button-secondary button-margin">Register</button>
-            </a>
-        </div>
-    </form>
+    <div class="col-lg-12">
+        <h5>User login</h5>
+        {{ form.non_field_errors }}
+        <form class="form-vertical" action="{% url "user:login" %}" method="post">
+            {% csrf_token %}
+            {% include "generic/form.html" %}
+            <div class="form-buttons">
+                <button type="submit" class="btn button-primary">Log in</button>
+                <a href="{% url "user:register" %}">
+                    <button type="button" class="btn button-secondary button-margin">Register</button>
+                </a>
+            </div>
+        </form>
+    </div>
 {% endblock %}

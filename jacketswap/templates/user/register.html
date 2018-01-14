@@ -3,11 +3,14 @@
 {% block title %}Register &middot; JacketSwap{% endblock %}
 
 {% block content %}
-    <form class="form-vertical" action="{% url "user:register" %}" method="post">
-        {% csrf_token %}
-        {% include "generic/form.html" %}
-        <div class="form-buttons">
-            <button type="submit" class="btn button-primary">Submit</button>
-        </div>
-    </form>
+    <div class="col-lg-12">
+        <h5>User registration</h5>
+        <form class="form-vertical" action="{% url "user:register" %}" method="post">
+            {% csrf_token %}
+            {% include "generic/form.html" %}
+            <div class="form-buttons">
+                <button type="submit" class="btn button-primary">Submit</button>
+            </div>
+        </form>
+    </div>
 {% endblock %}

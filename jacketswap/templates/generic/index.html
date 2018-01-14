@@ -4,23 +4,38 @@
 {% block title %}Home &middot; JacketSwap{% endblock %}
 
 {% block navigation %}
+    <div class="mobile-navigation">
+        {% include 'generic/navigation.html' %}
+    </div>
     <div class="splash" style="background-image: url({% static 'generic/img/splash.jpg' %})">
-
         <nav class="splash-navigation">
-            <ul>
-                <a href="#"><li>About</li></a>
-                {% if user.is_authenticated %}
-                    <a href="{% url 'user:logout' %}"><li>Logout</li></a>
-                {% else %}
-                    <a href="{% url 'user:login' %}"><li>Login</li></a>
-                {% endif %}
-                <a href="#"><li class="button">Add jacket</li></a>
-            </ul>
+            {% include 'generic/navigation.html' %}
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
         </nav>
         <div class="logo">
             <img src="{% static 'generic/img/js-logo-white.png' %}" alt="JacketSwap logo" />
             <h1>JacketSwap</h1>
             <input class="js-input-splash" type="text" name="search" placeholder="Search (ex. black jacket in Fuik)">
         </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="col-lg-12">
+        <h5>Recently added jackets</h5>
+        {% for jacket in jackets %}
+            <a href="{% url 'jacket:details' jacket.pk %}">
+                <div class="jacket-item">
+                    <div class="image" style="background-image: url({{ jacket.image.url }})"></div>
+                    <div class="info">
+                        <div class="title">{{ jacket.title }}</div>
+                        <div class="location">{{ jacket.location }}</div>
+                    </div>
+                    <div class="lof">{{ jacket.lost_found }}</div>
+                </div>
+            </a>
+        {% endfor %}
     </div>
 {% endblock %}

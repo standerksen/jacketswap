@@ -1,0 +1,20 @@
+{% extends "generic/base.html" %}
+
+{% block title %}Add jacket &middot; JacketSwap{% endblock %}
+
+{% block content %}
+    <div class="col-lg-12">
+        <h5>Add a jacket</h5>
+        <form class="form-vertical" action="{% url "jacket:create" %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% include "generic/form.html" %}
+            <button type="submit" class="btn button-primary">Submit</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    {% load staticfiles %}
+    <script src="{% static "generic/js/form.js" %}"></script>
+{% endblock %}
