@@ -25,7 +25,7 @@ SECRET_KEY = '8ds-mn)ithomghk_ajjl-kx=%=m51-vwa+fjye97uw^slthqt5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '2id60.win.tue.nl']
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'jacketswap@gmail.com'

@@ -9,7 +9,8 @@ class CreateJacketForm(forms.ModelForm):
     image = forms.FileField(widget=forms.FileInput(attrs={'class': 'form-control js-input file-input'}))
     lost_found = forms.ChoiceField(choices={('lost', 'Lost'), ('found', 'Found')},
                                    widget=forms.RadioSelect(attrs={'class': 'radio-select'}),
-                                   label="Lost or found")
+                                   label="Lost or found",
+                                   initial='lost')
 
     class Meta:
         model = Jacket
